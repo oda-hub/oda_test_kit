@@ -1,2 +1,2 @@
 def test_lcpick_largebins(cdciplatform):
-    pass
+    print("running test test_lcpick_largebins")
