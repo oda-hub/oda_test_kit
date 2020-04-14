@@ -1,2 +1,2 @@
-def test_lcpick_largebins():
+def test_lcpick_largebins(cdciplatform):
     pass
