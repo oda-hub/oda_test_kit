@@ -1,2 +1,2 @@
 def test_lcpick_largebins():
-    pass
+    print("running test test_lcpick_largebins")
