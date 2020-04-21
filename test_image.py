@@ -13,7 +13,7 @@ def test_oneimage(cdciplatform, *a, **aa):
     if cdciplatform.endswith("production-1.2"):
         endpoint = 'www.astro.unige.ch/cdci/astrooda/dispatch-data'
     else:
-        endpoint = 'http://cdcihn/{}/dispatch-data'.format(cdciplatform.split("#")[1].replace("cdcip-"))
+        endpoint = 'http://cdcihn/{}/dispatch-data'.format(cdciplatform.split("#")[1].replace("cdcip-", ""))
 
         
     disp=DispatcherAPI(host=endpoint)
