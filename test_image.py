@@ -10,10 +10,12 @@ def test_oneimage(cdciplatform, *a, **aa):
     import numpy as np
     from numpy import sqrt
 
-    if cdciplatform.endswith("production-1.2"):
+    if cdciplatform.endswith("production1.2"):
         endpoint = 'www.astro.unige.ch/cdci/astrooda/dispatch-data'
+    elif cdciplatform.endswith("production1.2"):
+        endpoint = 'http://cdcihn/staging-1.2/dispatch-data'
     else:
-        endpoint = 'http://cdcihn/{}/dispatch-data'.format(cdciplatform.split("#")[1].replace("cdcip-", ""))
+        raise Exception("unknown platform")
 
         
     disp=DispatcherAPI(host=endpoint)
