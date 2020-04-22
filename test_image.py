@@ -13,7 +13,7 @@ def test_oneimage(cdciplatform, *a, **aa):
     if cdciplatform.endswith("production1.2"):
         endpoint = 'www.astro.unige.ch/cdci/astrooda/dispatch-data'
     elif cdciplatform.endswith("staging1.2"):
-        endpoint = 'http://cdcihn/staging-1.2/dispatch-data'
+        endpoint = 'http://cdcihn/staging-1.2/frontend/dispatch-data'
     else:
         raise Exception("unknown platform")
 
