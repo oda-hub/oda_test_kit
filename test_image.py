@@ -85,7 +85,7 @@ def test_2recentscw(cdciplatform, *a, **aa):
 
     data=disp.get_product(instrument='isgri',
                           product='isgri_image',
-                          scw_list=[s+".001" for s in scwpick],
+                          scw_list=[str(s)+".001" for s in scwpick],
                           E1_keV=20,
                           E2_keV=80,
                           osa_version='OSA10.2',
