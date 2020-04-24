@@ -44,6 +44,8 @@ def test_2recentscw(cdciplatform, timestamp=None, *a, **aa):
 
     if timestamp is None:
         timestamp=time.time()
+    else:
+        timestamp=float(time.time())
 
     t1 = timestamp - 24*3600*380
     t2 = timestamp - 24*3600*370
