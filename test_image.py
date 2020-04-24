@@ -38,11 +38,15 @@ def test_oneimage(cdciplatform, *a, **aa):
 
 
 
-def test_2recentscw(cdciplatform, *a, **aa):
+def test_2recentscw(cdciplatform, timestamp=None, *a, **aa):
     import requests
     import time
-    t1 = time.time() - 24*3600*21
-    t2 = time.time() - 24*3600*19
+
+    if timestamp is None:
+        timestamp=time.time()
+
+    t1 = timestamp - 24*3600*380
+    t2 = timestamp - 24*3600*370
     s ="https://www.astro.unige.ch/cdci/astrooda/dispatch-data/gw/timesystem/api/v1.0/scwlist/cons/{}/{}?&ra=83&dec=22&radius=200.0&min_good_isgri=1000".format(
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t1)),
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t2)),
