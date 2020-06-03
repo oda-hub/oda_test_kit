@@ -30,8 +30,7 @@ def test_one(cdciplatform, *a, **aa):
                           E2_keV=80,
                           osa_version='OSA10.2',
                           RA=0,
-                          DEC=0,
-                          detection_threshold=15,
+                          DEC=0,                          
                           product_type='Real')
 
     print(data)
@@ -97,7 +96,6 @@ def test_2recentscw(cdciplatform, timestamp=None, *a, **aa):
                           osa_version='OSA10.2',
                           RA=0,
                           DEC=0,
-                          detection_threshold=15,
                           product_type='Real')
 
     print(data)
