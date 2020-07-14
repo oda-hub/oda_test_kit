@@ -65,7 +65,7 @@ def test_2recentscw(cdciplatform, timestamp=None, *a, **aa):
 
     print(r.json())
 
-    scwpick = r.json()[:2]
+    scwpick = r.json()[:6]
 
     print("picked")
 
