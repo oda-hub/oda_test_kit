@@ -22,12 +22,7 @@ def test_one(cdciplatform, *a, **aa):
     import numpy as np
     from numpy import sqrt
 
-    if cdciplatform.endswith("production1.2"):
-        endpoint = 'www.astro.unige.ch/cdci/astrooda/dispatch-data'
-    elif cdciplatform.endswith("staging1.2"):
-        endpoint = 'http://cdcihn/staging-1.2/frontend/dispatch-data'
-    else:
-        raise Exception("unknown platform")
+    endpoint = platform_endpoint(cdciplatform)
 
         
     disp=DispatcherAPI(host=endpoint)
