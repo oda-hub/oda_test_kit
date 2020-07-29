@@ -44,7 +44,7 @@ def test_one(cdciplatform, *a, **aa):
 
 
 
-def test_2recentscw(cdciplatform, timestamp=None, *a, **aa):
+def test_n_recentscw(cdciplatform, timestamp=None, n_scw=2, *a, **aa):
     import requests
     import time
 
@@ -65,7 +65,7 @@ def test_2recentscw(cdciplatform, timestamp=None, *a, **aa):
 
     print(r.json())
 
-    scwpick = r.json()[:6]
+    scwpick = r.json()[:n_scw]
 
     print("picked")
 

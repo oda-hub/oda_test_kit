@@ -1,3 +1,5 @@
+import random
+
 def platform_endpoint(cdciplatform):  
     if cdciplatform.endswith("production1.2"):
         endpoint = 'www.astro.unige.ch/cdci/astrooda/dispatch-data'
@@ -46,7 +48,7 @@ def test_oneimage(cdciplatform, osaversion, *a, **aa):
 
 
 
-def test_2recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", *a, **aa):
+def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2, *a, **aa):
     import requests
     import time
 
@@ -67,7 +69,7 @@ def test_2recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", *a, **aa
 
     print(r.json())
 
-    scwpick = r.json()[:2]
+    scwpick = random.sample(r.json(), n_scw)
 
     print("picked")
 
