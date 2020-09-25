@@ -32,10 +32,11 @@ def test_oneimage(cdciplatform, osaversion, *a, **aa):
 
     print(disp)
 
+    onescw = aa.get("scw", "066500220010.001")
 
     data=disp.get_product(instrument='isgri',
                           product='isgri_image',
-                          scw_list=["066500220010.001"],
+                          scw_list=[onescw],
                           E1_keV=25,
                           E2_keV=80,
                           osa_version='OSA10.2',
@@ -68,6 +69,8 @@ def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2
     r = requests.get(s)
 
     print(r.json())
+
+    random.seed(0)
 
     scwpick = random.sample(r.json(), n_scw)
 
