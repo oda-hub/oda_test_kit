@@ -92,7 +92,7 @@ def test_n_recentscw(cdciplatform, timestamp=None, n_scw=2, *a, **aa):
                           RA=0,
                           DEC=0,
                           product_type='Real',
-                          catalog=catalog,
+                          selected_catalog=catalog,
                           )
 
     print(data)
