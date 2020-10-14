@@ -49,7 +49,7 @@ def test_oneimage(cdciplatform, osaversion, *a, **aa):
 
 
 
-def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2, *a, **aa):
+def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2, e_offset=0, *a, **aa):
     import requests
     import time
 
@@ -106,8 +106,8 @@ def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2
     data=disp.get_product(instrument='isgri',
                           product='isgri_image',
                           scw_list=[str(s)+".001" for s in scwpick],
-                          E1_keV=25,
-                          E2_keV=80,
+                          E1_keV=25 + e_offset,
+                          E2_keV=80 + e_offset,
                           osa_version=osa_version,
                           RA=0,
                           DEC=0,
