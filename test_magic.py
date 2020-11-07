@@ -28,7 +28,10 @@ def test_urlrequest(cdciplatform, *a, **aa):
     print("running test direct url at ",cdciplatform)
 
     r = requests.get("http://in.internal.odahub.io/staging-1-3/dispatcher/run_analysis?instrument=magic&query_status=new&query_type=image&product_type=magic_image").json()
+
+    print("got this", r)
+
     assert r['query_status'] == "done"
     assert r['exit_status']['status'] == 0
 
-
+    print("this is done and status zero; good!")
