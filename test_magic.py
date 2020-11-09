@@ -35,3 +35,16 @@ def test_urlrequest(cdciplatform, *a, **aa):
     assert r['exit_status']['status'] == 0
 
     print("this is done and status zero; good!")
+
+def test_urlrequest_realsource(cdciplatform, *a, **aa):
+    print("running test direct url at ",cdciplatform)
+
+    r = requests.get("http://in.internal.odahub.io/staging-1-3/dispatcher/run_analysis?src_name=HESSJ1841-055&RA=280.22916667&DEC=-5.55&instrument=magic&query_type=Real&radius=20&product_type=magic_spectrum&query_status=new&session_id=TEST").json()
+
+    print("got this", r)
+
+    assert r['query_status'] == "done"
+    assert r['exit_status']['status'] == 0
+    assert 'Bokeh' in r['products']['image'][0]['image']['script']
+
+    print("this is done and status zero; good!")
