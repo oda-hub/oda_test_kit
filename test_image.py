@@ -12,6 +12,9 @@ def platform_endpoint(cdciplatform):
 
     return endpoint
 
+def custom_progress_formatter(L):
+    nscw = len(set([l['scwid'] for l in L]))
+    return "in %d SCW so far"
 
 def test_oneimage(cdciplatform, osaversion, *a, **aa):
     print("running test one image at ",cdciplatform)
@@ -34,6 +37,8 @@ def test_oneimage(cdciplatform, osaversion, *a, **aa):
 
     onescw = aa.get("scw", "066500220010.001")
 
+    disp.set_custom_progress_formatter(custom_progress_formatter)
+
     data=disp.get_product(instrument='isgri',
                           product='isgri_image',
                           scw_list=[onescw],
@@ -49,7 +54,7 @@ def test_oneimage(cdciplatform, osaversion, *a, **aa):
 
 
 
-def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2, e_offset=0, *a, **aa):
+def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2, e_offset=0, source=None, *a, **aa):
     import requests
     import time
 
@@ -58,11 +63,27 @@ def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2
     else:
         timestamp=float(time.time())
 
-    t1 = timestamp - 24*3600*580
-    t2 = timestamp - 24*3600*570
-    s ="https://www.astro.unige.ch/cdci/astrooda/dispatch-data/gw/timesystem/api/v1.0/scwlist/cons/{}/{}?&ra=83&dec=22&radius=200.0&min_good_isgri=1000".format(
+    if source is None:
+        ra = 0
+        dec = 0
+        radius = 180
+        t1 = timestamp - 24*3600*580
+        t2 = timestamp - 24*3600*570
+    elif source == "Crab":
+        ra = 83
+        dec = 22
+        radius = 10
+        t1 = timestamp - 24*3600*880
+        t2 = timestamp - 24*3600*570
+    else:
+        raise NotImplementedError
+
+    s ="https://www.astro.unige.ch/cdci/astrooda/dispatch-data/gw/timesystem/api/v1.0/scwlist/cons/{}/{}?&ra={}&dec={}&radius={}&min_good_isgri=1000".format(
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t1)),
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t2)),
+            ra,
+            dec,
+            radius,
         )
     print(s)
 
@@ -93,6 +114,7 @@ def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2
 
         
     disp=DispatcherAPI(host=endpoint)
+    disp.set_custom_progress_formatter(custom_progress_formatter)
 
     print(disp)
 
@@ -115,3 +137,16 @@ def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2
                           product_type='Real')
 
     print(data)
+    print(dir(data))
+
+    catalog_table = data.dispatcher_catalog_1.table
+    print(catalog_table['significance']>=0.0)
+
+    if source is not None:
+        print(f"\033[31m source check requested for {source}\033[0m")
+
+        t = catalog_table[ catalog_table['src_names'] == source ]
+        print(t)
+
+        assert len(t) == 1
+

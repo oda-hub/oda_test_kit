@@ -12,6 +12,7 @@ def platform_endpoint(cdciplatform):
 
     return endpoint
 
+
 def disp_for_platform(cdciplatform):
     from oda_api.api import DispatcherAPI
     from oda_api.plot_tools import OdaImage,OdaLightCurve
@@ -81,7 +82,6 @@ def test_n_recentscw(cdciplatform, timestamp=None, n_scw=2, *a, **aa):
     disp = disp_for_platform(cdciplatform)
 
     print(disp)
-
 
     data=disp.get_product(instrument='isgri',
                           product='isgri_spectrum',
