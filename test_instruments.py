@@ -10,12 +10,6 @@ logging.getLogger().handlers[0].setFormatter(
 logger = logging.getLogger("oda_api")
 logger.setLevel("DEBUG")
 
-try:
-    import logging_tree
-    logging_tree.printout()
-except:
-    pass
-
 def platform_endpoint(cdciplatform):  
     if cdciplatform.endswith("production1.2"):
         endpoint = 'www.astro.unige.ch/cdci/astrooda/dispatch-data'
@@ -57,14 +51,4 @@ def test_instruments(cdciplatform, *a, **aa):
     r = disp.get_instrument_description('isgri')
 
     print("\033[34m",json.dumps(r, indent=4, sort_keys=True), "\033[0m")
-    
-
-@click.command()
-@click.argument("test_name")
-@click.option('--argument', '-a', multiple=True)
-def cli(test_name, argument):
-    globals()[test_name](*argument)
-
-if __name__ == "__main__":
-    cli()
     
