@@ -10,9 +10,11 @@ logging.getLogger().handlers[0].setFormatter(
 logger = logging.getLogger("oda_api")
 logger.setLevel("DEBUG")
 
-import logging_tree
-
-logging_tree.printout()
+try:
+    import logging_tree
+    logging_tree.printout()
+except:
+    pass
 
 def platform_endpoint(cdciplatform):  
     if cdciplatform.endswith("production1.2"):
