@@ -3,6 +3,10 @@ import logging
 logging.basicConfig(level="DEBUG")
 logging.getLogger("oda_api").setLevel("DEBUG")
 
+
+import requests
+exec(requests.get("https://raw.githubusercontent.com/oda-hub/oda_test_kit/master/odaplatform.py").text)
+
 def test_lcpick_largebins(cdciplatform, *a, **aa):
     print("running test test_lcpick_largebins at ",cdciplatform)
 
@@ -20,11 +24,8 @@ def test_jemx_lc_source_name_formatting(cdciplatform, *a, **aa):
     assert parse(pkg_resources.get_distribution("oda_api").version) >= parse("1.1.14")
 
     from oda_api.api import DispatcherAPI
-
-    if cdciplatform != "oda-staging":
-        raise NotImplementedError
-        
-    disp = DispatcherAPI(url="http://dispatcher.staging.internal.odahub.io")
+            
+    disp = DispatcherAPI(url=platform_endpoint(cdciplatform))
     
     par_dict = {
         "src_name": "4U 1700-377",

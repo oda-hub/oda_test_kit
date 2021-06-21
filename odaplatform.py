@@ -1,11 +1,15 @@
 def platform_endpoint(cdciplatform):  
-    if cdciplatform.endswith("production1.2"):
-        endpoint = 'www.astro.unige.ch/cdci/astrooda/dispatch-data'
-    elif cdciplatform.endswith("staging1.2"):
-        endpoint = 'http://cdcihn.isdc.unige.ch/staging-1.2/frontend/dispatch-data'
-    elif cdciplatform.endswith("staging1.3"):
-        endpoint = 'http://in.internal.odahub.io/staging-1-3/dispatcher'
-    else:
-        raise Exception("unknown platform")
+    urls = {
+        "production1.2":  'https://www.astro.unige.ch/cdci/astrooda/dispatch-data',
+        "staging1.2": 'http://cdcihn.isdc.unige.ch/staging-1.2/frontend/dispatch-data',
+        "staging": 'http://in.internal.odahub.io/staging-1-3/dispatcher'
+    }
 
-    return endpoint
+    matching = { u:v for u,v in urls.items() if u.endswith(cdciplatform) }
+
+    if len(matching) == 0:
+        raise Exception("unknown platform")
+    elif len(matching) > 1:
+        raise Exception(f"multiple matching platforms: {dict(matching}")
+    else:
+        return list(matching.values())[0]
