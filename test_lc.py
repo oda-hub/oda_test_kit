@@ -11,6 +11,7 @@ def test_jemx_lc_source_name_formatting(cdciplatform, *a, **aa):
     """
     feature: source names
     feature: attribute source name
+    issue: https://github.com/oda-hub/dispatcher-plugin-integral/issues/40
     """
 
     import pkg_resources
