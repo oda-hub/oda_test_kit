@@ -6,6 +6,11 @@ from astropy import units as u
 from astroquery.simbad import Simbad
 
 import logging
+import logging
+
+logging.basicConfig(level="DEBUG")
+
+logging.getLogger("oda_api").setLevel("DEBUG")
     
 
 def get_named_source_coord(name):
@@ -41,6 +46,8 @@ def platform_endpoint(cdciplatform):
         endpoint = 'http://cdcihn.isdc.unige.ch/staging-1.2/frontend/dispatch-data'
     elif cdciplatform.endswith("staging1.3"):
         endpoint = 'http://in.internal.odahub.io/staging-1-3/dispatcher'
+    elif cdciplatform.endswith("staging"):
+        endpoint = 'http://dispatcher.staging.internal.odahub.io'
     else:
         raise Exception("unknown platform")
 
@@ -50,7 +57,7 @@ def custom_progress_formatter(L):
     nscw = len(set([l['scwid'] for l in L]))
     return "in %d SCW so far"
 
-def test_oneimage(cdciplatform, osaversion, *a, **aa):
+def test_oneimage(cdciplatform, *a, **aa):
     print("running test one image at ",cdciplatform)
 
     from oda_api.api import DispatcherAPI
@@ -69,7 +76,7 @@ def test_oneimage(cdciplatform, osaversion, *a, **aa):
 
     print(disp)
 
-    onescw = aa.get("scw", "066500220010.001")
+    onescw = aa.get("scw", "186500220010.001")
 
     disp.set_custom_progress_formatter(custom_progress_formatter)
 
@@ -78,7 +85,7 @@ def test_oneimage(cdciplatform, osaversion, *a, **aa):
                           scw_list=[onescw],
                           E1_keV=25,
                           E2_keV=80,
-                          osa_version='OSA10.2',
+                          osa_version='OSA11.0',
                           RA=0,
                           DEC=0,
                           detection_threshold=15,
@@ -187,7 +194,9 @@ def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2
     print(dir(data))
 
     catalog_table = data.dispatcher_catalog_1.table
-    print(catalog_table['significance']>=0.0)
+    m = catalog_table['significance'] >= 0.0
+
+    print(catalog_table[m])
 
     if source is not None:
         print(f"\033[31m source check requested for {source}\033[0m")

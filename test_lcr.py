@@ -11,7 +11,7 @@ def platform_endpoint(cdciplatform):
     return endpoint
 
 def test_one(cdciplatform, *a, **aa):
-    print("running test one image at ",cdciplatform)
+    print("running test one lc at ",cdciplatform)
 
     from oda_api.api import DispatcherAPI
     from oda_api.plot_tools import OdaImage,OdaLightCurve
@@ -43,6 +43,17 @@ def test_one(cdciplatform, *a, **aa):
 
     print(data)
 
+    print(data.show())
+
+    print(data._p_list)
+
+    print(data.isgri_lc_0_Crab)
+
+    print(data.isgri_lc_0_Crab.data_unit[1].data)
+
+    assert 'XAX_E' in data.isgri_lc_0_Crab.data_unit[1].data
+
+    return data
 
 
 def test_n_recentscw(cdciplatform, timestamp=None, n_scw=3, *a, **aa):

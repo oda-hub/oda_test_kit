@@ -7,6 +7,8 @@ def platform_endpoint(cdciplatform):
         endpoint = 'http://cdcihn.isdc.unige.ch/staging-1.2/frontend/dispatch-data'
     elif cdciplatform.endswith("staging1.3"):
         endpoint = 'http://in.internal.odahub.io/staging-1-3/dispatcher'
+    elif cdciplatform.endswith("oda-staging"):
+        endpoint = 'http://in.internal.odahub.io/oda/staging/dispatcher'
     else:
         raise Exception("unknown platform")
 
@@ -60,21 +62,19 @@ def test_n_recentscw(cdciplatform, timestamp=None, n_scw=2, *a, **aa):
 
     catalog = aa.get('catalog', None)
 
-    t1 = timestamp - 24*3600*580
+    t1 = timestamp - 24*3600*680
     t2 = timestamp - 24*3600*570
     s ="https://www.astro.unige.ch/cdci/astrooda/dispatch-data/gw/timesystem/api/v1.0/scwlist/cons/{}/{}?&ra=83&dec=22&radius=200.0&min_good_isgri=1000".format(
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t1)),
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t2)),
         )
-    print(s)
 
     r = requests.get(s)
 
-    print(r.json())
 
     scwpick = r.json()[:n_scw]
 
-    print("picked")
+    print("picked", scwpick)
 
     assert len(scwpick) > 0
 
