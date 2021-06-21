@@ -12,6 +12,12 @@ def test_jemx_lc_source_name_formatting(cdciplatform, *a, **aa):
     feature: source names
     feature: attribute source name
     """
+
+    import pkg_resources
+    from packaging.version import parse
+
+    assert parse(pkg_resources.get_distribution("oda_api").version) >= parse("1.1.14")
+
     from oda_api.api import DispatcherAPI
 
     if cdciplatform != "oda-staging":
