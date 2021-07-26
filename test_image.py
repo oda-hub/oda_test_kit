@@ -1,11 +1,22 @@
 import random
 
+# import logging
+# logging.basicConfig(level="DEBUG")
+# logging.getLogger('oda_api.api').setLevel('DEBUG')
+
 import astroquery.heasarc
 from astropy.coordinates import SkyCoord
 from astropy import units as u
 from astroquery.simbad import Simbad
 
-import logging
+from odaexperiments.run import test_func
+
+# these kind of calls should be traced and noted in the KG
+platform_endpoint = lambda x:test_func(
+    "odaplatform", 
+    "platform_endpoint", 
+    ref="a86f682292e6233247bb299e5b4b5155faeaf214")(cdciplatform=x)
+
 import logging
 
 logging.basicConfig(level="DEBUG")
