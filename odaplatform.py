@@ -8,7 +8,8 @@ def platform_endpoint(cdciplatform: cdciplatform) -> URL:
     urls = {
         "production1.2":  'https://www.astro.unige.ch/cdci/astrooda/dispatch-data',
         "staging1.2": 'http://cdcihn.isdc.unige.ch/staging-1.2/frontend/dispatch-data',
-        "staging": 'http://dispatcher.staging.internal.odahub.io/'
+        "staging": 'http://dispatcher.staging.internal.odahub.io/',
+        "production": 'https://www.astro.unige.ch/mmoda/dispatch-data'
     }
 
     matching = { p:u for p,u in urls.items() if cdciplatform.endswith(p) }

@@ -1,14 +1,11 @@
-def platform_endpoint(cdciplatform):  
-    if cdciplatform.endswith("production1.2"):
-        endpoint = 'www.astro.unige.ch/cdci/astrooda/dispatch-data'
-    elif cdciplatform.endswith("staging1.2"):
-        endpoint = 'http://cdcihn.isdc.unige.ch/staging-1.2/frontend/dispatch-data'
-    elif cdciplatform.endswith("staging1.3"):
-        endpoint = 'http://in.internal.odahub.io/staging-1-3/dispatcher'
-    else:
-        raise Exception("unknown platform")
+from odaexperiments.run import test_func
 
-    return endpoint
+# these kind of calls should be traced and noted in the KG
+platform_endpoint = lambda x:test_func(
+    "odaplatform", 
+    "platform_endpoint", 
+    ref="a86f682292e6233247bb299e5b4b5155faeaf214")(cdciplatform=x)
+
 
 def test_one(cdciplatform, *a, **aa):
     print("running test one lc at ",cdciplatform)
