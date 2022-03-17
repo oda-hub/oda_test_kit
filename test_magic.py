@@ -7,7 +7,7 @@ from odaexperiments.run import test_func
 platform_endpoint = lambda x:test_func(
     "odaplatform", 
     "platform_endpoint", 
-    ref="a86f682292e6233247bb299e5b4b5155faeaf214")(cdciplatform=x)
+    ref="6b36d8f")(cdciplatform=x)
 
 
 def disp_for_platform(cdciplatform):
