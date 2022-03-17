@@ -2,6 +2,10 @@ import json
 
 from odaexperiments.run import test_func
 
+import logging
+logging.getLogger().setLevel(logging.DEBUG)
+#logging.getLogger('oda_api').addHandler(logging.StreamHandler())
+
 # these kind of calls should be traced and noted in the KG
 platform_endpoint = lambda x:test_func(
     "odaplatform", 
