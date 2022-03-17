@@ -6,7 +6,7 @@ class cdciplatform(str):
 
 def platform_endpoint(cdciplatform: cdciplatform) -> URL:  
     urls = {
-        "staging": 'https://dispatcher-staging.obsuks1.unige.ch/'
+        "staging": 'https://dispatcher-staging.obsuks1.unige.ch/',
         "production": 'https://www.astro.unige.ch/mmoda/dispatch-data/'
     }
 
