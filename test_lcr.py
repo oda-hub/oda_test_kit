@@ -50,7 +50,6 @@ def test_one(cdciplatform, *a, **aa):
 
     #assert 'XAX_E' in data.isgri_lc_0_Crab.data_unit[1].data
 
-    return data
 
 
 def test_n_recentscw(cdciplatform, timestamp=None, n_scw=3, *a, **aa):
