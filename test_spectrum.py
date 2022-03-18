@@ -60,7 +60,7 @@ def test_n_recentscw(cdciplatform, timestamp=None, n_scw=2, *a, **aa):
 
     catalog = aa.get('catalog', None)
 
-    t1 = timestamp - 24*3600*680
+    t1 = timestamp - 24*3600*880
     t2 = timestamp - 24*3600*570
     s ="https://www.astro.unige.ch/cdci/astrooda/dispatch-data/gw/timesystem/api/v1.0/scwlist/cons/{}/{}?&ra=83&dec=22&radius=200.0&min_good_isgri=1000".format(
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t1)),

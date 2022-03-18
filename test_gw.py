@@ -12,8 +12,8 @@ def test_scsystem(*a, **aa):
 def test_scwlist(*a, **aa):
     import requests
     import time
-    t1 = time.time() - 24*3600*21
-    t2 = time.time() - 24*3600*19
+    t1 = time.time() - 24*3600*30
+    t2 = time.time() - 24*3600*20
     s ="https://www.astro.unige.ch/cdci/astrooda/dispatch-data/gw/timesystem/api/v1.0/scwlist/cons/{}/{}?&ra=83&dec=22&radius=200.0&min_good_isgri=1000".format(
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t1)),
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t2)),

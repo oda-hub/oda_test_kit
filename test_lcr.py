@@ -62,8 +62,8 @@ def test_n_recentscw(cdciplatform, timestamp=None, n_scw=3, *a, **aa):
     else:
         timestamp=float(time.time())
 
-    t1 = timestamp - 24*3600*580
-    t2 = timestamp - 24*3600*570
+    t1 = timestamp - 24*3600*590
+    t2 = timestamp - 24*3600*550
     s ="https://www.astro.unige.ch/cdci/astrooda/dispatch-data/gw/timesystem/api/v1.0/scwlist/cons/{}/{}?&ra=83&dec=22&radius=200.0&min_good_isgri=1000".format(
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t1)),
             time.strftime("%Y-%m-%dT%H:00:00", time.gmtime(t2)),
