@@ -84,7 +84,7 @@ def test_oneimage(cdciplatform, *a, **aa):
                           scw_list=[onescw],
                           E1_keV=25,
                           E2_keV=80,
-                          osa_version='OSA11.0',
+                          osa_version='OSA11.1',
                           RA=0,
                           DEC=0,
                           detection_threshold=15,
@@ -171,8 +171,8 @@ def test_n_recentscw(cdciplatform, timestamp=None, osaversion="osa10.2", n_scw=2
 
     if '10.2' in osaversion:
         osa_version='OSA10.2'
-    elif '11.0' in osaversion:
-        osa_version='OSA11.0'
+    elif '11.1' in osaversion:
+        osa_version='OSA11.1'
     else:
         osa_version='OSA10.2' # default
 
