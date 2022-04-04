@@ -21,3 +21,6 @@ def test_crab(cdciplatform, *a, **aa):
 
     R = requests.get(endpoint + "/resolver/api/v1.1/byname/Crab").json()
     print(R)
+
+    assert abs(R['ra'] - 83.63) < 0.1
+    assert abs(R['dec'] - 22.01) < 0.1
