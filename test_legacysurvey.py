@@ -1,9 +1,17 @@
-from odaplatform import platform_endpoint
+import logging
+from odaexperiments.run import test_func
 
+logging.basicConfig(level="INFO")
+logging.getLogger("oda_api").setLevel("INFO")
+    
+
+platform_endpoint = lambda x:test_func(
+    "odaplatform", 
+    "platform_endpoint", 
+    ref="66bbd60")(cdciplatform=x)
 
 def test_ls_im(cdciplatform):
-    endpoint = platform_endpoint(cdciplatform)
-    
+    endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     print('Dispatcher at:', endpoint)
     
     from oda_api.api import DispatcherAPI
@@ -32,7 +40,7 @@ def test_ls_im(cdciplatform):
 
 
 def test_ls_ph(cdciplatform):
-    endpoint = platform_endpoint(cdciplatform)
+    endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     
     print('Dispatcher at:', endpoint)
     
