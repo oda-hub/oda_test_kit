@@ -16,7 +16,7 @@ platform_endpoint = lambda x:test_func(
 def test_crab(cdciplatform, *a, **aa):
     print("running test one image at ", cdciplatform)
 
-    endpoint = platform_endpoint(cdciplatform)
+    endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
 
     print('endpoint', endpoint)
 
@@ -30,7 +30,7 @@ def test_crab(cdciplatform, *a, **aa):
 def test_gw(cdciplatform, *a, **aa):
     print("running test one image at ", cdciplatform)
 
-    endpoint = platform_endpoint(cdciplatform)
+    endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
 
     print('endpoint', endpoint)
 
@@ -49,7 +49,7 @@ def test_gw(cdciplatform, *a, **aa):
 def test_grb(cdciplatform, *a, **aa):
     print("running test one image at ", cdciplatform)
 
-    endpoint = platform_endpoint(cdciplatform)
+    endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
 
     print('endpoint', endpoint)
 

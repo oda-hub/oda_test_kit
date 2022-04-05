@@ -1,7 +1,18 @@
-from odaplatform import platform_endpoint
+import logging
+from odaexperiments.run import test_func
+
+logging.basicConfig(level="INFO")
+logging.getLogger("oda_api").setLevel("INFO")
+    
+
+platform_endpoint = lambda x:test_func(
+    "odaplatform", 
+    "platform_endpoint", 
+    ref="66bbd60")(cdciplatform=x)
+
 
 def test_gw_im(cdciplatform):
-    endpoint = platform_endpoint(cdciplatform)
+    endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     
     print('Dispatcher at:', endpoint)
     
@@ -31,7 +42,7 @@ def test_gw_im(cdciplatform):
     data_collection.show()
     
 def test_gw_strain(cdciplatform):
-    endpoint = platform_endpoint(cdciplatform)
+    endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     
     print('Dispatcher at:', endpoint)
     
@@ -60,7 +71,7 @@ def test_gw_strain(cdciplatform):
     data_collection.show()
     
 def test_gw_sgram(cdciplatform):
-    endpoint = platform_endpoint(cdciplatform)
+    endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     
     print('Dispatcher at:', endpoint)
     

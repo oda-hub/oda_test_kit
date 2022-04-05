@@ -6,9 +6,8 @@ class cdciplatform(str):
 
 def platform_endpoint(cdciplatform: cdciplatform) -> URL:  
     urls = {
-        "staging": 'https://frontend-staging.obsuks1.unige.ch/mmoda/',
-        #"staging": 'https://dispatcher-staging.obsuks1.unige.ch/',
-        "production": 'https://www.astro.unige.ch/mmoda/'
+        "staging": 'https://frontend-staging.obsuks1.unige.ch/mmoda',
+        "production": 'https://www.astro.unige.ch/mmoda'
     }
 
     matching = { p:u for p,u in urls.items() if cdciplatform.endswith(p) }
