@@ -10,7 +10,7 @@ platform_endpoint = lambda x:test_func(
     "platform_endpoint", 
     ref="66bbd60")(cdciplatform=x)
 
-def test_ls_im(cdciplatform):
+def test_ls_im(cdciplatform, *args, **kwargs):
     endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     print('Dispatcher at:', endpoint)
     
@@ -39,7 +39,7 @@ def test_ls_im(cdciplatform):
     data_collection.show()
 
 
-def test_ls_ph(cdciplatform):
+def test_ls_ph(cdciplatform, *args, **kwargs):
     endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     
     print('Dispatcher at:', endpoint)

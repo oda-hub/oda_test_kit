@@ -11,7 +11,7 @@ platform_endpoint = lambda x:test_func(
     ref="66bbd60")(cdciplatform=x)
 
 
-def test_gw_im(cdciplatform):
+def test_gw_im(cdciplatform, *args, **kwargs):
     endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     
     print('Dispatcher at:', endpoint)
@@ -41,7 +41,7 @@ def test_gw_im(cdciplatform):
     
     data_collection.show()
     
-def test_gw_strain(cdciplatform):
+def test_gw_strain(cdciplatform, *args, **kwargs):
     endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     
     print('Dispatcher at:', endpoint)
@@ -70,7 +70,7 @@ def test_gw_strain(cdciplatform):
     
     data_collection.show()
     
-def test_gw_sgram(cdciplatform):
+def test_gw_sgram(cdciplatform, *args, **kwargs):
     endpoint = platform_endpoint(cdciplatform) + "/dispatch-data"
     
     print('Dispatcher at:', endpoint)
