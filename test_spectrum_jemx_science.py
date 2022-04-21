@@ -61,7 +61,7 @@ def test_source(cdciplatform, *a, **aa):
     "max_pointings": 50,
     "oda_api_version": "1.1.22",
     "off_line": "False",
-    "osa_version": "OSA11.1",
+    "osa_version": "OSA11.2",
     "product": "jemx_spectrum",
     "query_status": "new",
     "query_type": "Real",

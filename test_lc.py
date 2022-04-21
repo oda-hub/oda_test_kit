@@ -41,7 +41,7 @@ def test_jemx_lc_source_name_formatting(cdciplatform, *a, **aa):
         "T2": "2019-06-05",
         "T_format": "isot",
         "instrument": "jemx",
-        "osa_version": "OSA11.1",
+        "osa_version": "OSA11.2",
         "radius": "4",
         "max_pointings": "50",
         "integral_data_rights": "public",
